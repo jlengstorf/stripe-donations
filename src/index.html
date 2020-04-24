@@ -3,59 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
     <title>Accept Donations on the Jamstack Using Stripe</title>
   </head>
   <body>
-    <h1>Accept Donations on the Jamstack Using Stripe</h1>
-    <!-- Load Stripe.js on your website. -->
+    <header>
+      <a href="/" rel="home">Accept Donations on the Jamstack Using Stripe</a>
+    </header>
+
+    <main>
+      <h1>Donate To Our Cause!</h1>
+      <p>
+        This demo is in test mode. That means you can check out using any of the
+        <a href="https://stripe.com/docs/testing#cards">test card numbers</a>.
+      </p>
+
+      <button id="donate-button" role="link">
+        Donate $5
+      </button>
+
+      <div id="error-message"></div>
+    </main>
+
+    <footer>
+      <p>
+        Based on an
+        <a
+          href="https://www.learnwithjason.dev/accept-donations-on-jamstack-sites"
+        >
+          episode of <em>Learn With Jason</em>
+        </a>
+        ·
+        <a href="https://jason.af/egghead/stripe-products">
+          watch the video course
+        </a>
+        ·
+        <a
+          href="https://www.netlify.com/blog/2020/04/13/learn-how-to-accept-money-on-jamstack-sites-in-38-minutes/?utm_source=demo&amp;utm_medium=stripe-checkout-jamstack-jl&amp;utm_campaign=devex"
+          >read the tutorial</a
+        >
+        ·
+        <a href="https://github.com/stripe-samples/checkout-netlify-serverless">
+          source code
+        </a>
+      </p>
+    </footer>
+
     <script src="https://js.stripe.com/v3"></script>
-
-    <!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
-    <button
-      style="
-        background-color: #6772e5;
-        color: #fff;
-        padding: 8px 12px;
-        border: 0;
-        border-radius: 4px;
-        font-size: 1em;
-      "
-      id="checkout-button-sku_H7BEsLD3uMHLVB"
-      role="link"
-    >
-      Checkout
-    </button>
-
-    <div id="error-message"></div>
-
     <script>
       (function () {
-        var stripe = Stripe('pk_test_Uczh5PNhB0aS0MZHnm2fkODM00MSoV8j3h');
+        // initialize Stripe using your publishable key
+        const stripe = Stripe('pk_test_Uczh5PNhB0aS0MZHnm2fkODM00MSoV8j3h');
 
-        var checkoutButton = document.getElementById(
-          'checkout-button-sku_H7BEsLD3uMHLVB'
-        );
-        checkoutButton.addEventListener('click', function () {
-          // When the customer clicks on the button, redirect
-          // them to Checkout.
+        // find the button and error message elements
+        const checkoutButton = document.getElementById('donate-button');
+        const errorMessage = document.getElementById('error-message');
+
+        // on click, send the user to Stripe Checkout to process the donation
+        checkoutButton.addEventListener('click', () => {
           stripe
             .redirectToCheckout({
               items: [{ sku: 'sku_H7BEsLD3uMHLVB', quantity: 1 }],
-
-              // Do not rely on the redirect to the successUrl for fulfilling
-              // purchases, customers may not always reach the success_url after
-              // a successful payment.
-              // Instead use one of the strategies described in
-              // https://stripe.com/docs/payments/checkout/fulfillment
               successUrl: `${window.location.origin}/success.html`,
               cancelUrl: window.location.origin,
             })
             .then(function (result) {
               if (result.error) {
-                // If `redirectToCheckout` fails due to a browser or network
-                // error, display the localized error message to your customer.
-                var displayError = document.getElementById('error-message');
-                displayError.textContent = result.error.message;
+                errorMessage.textContent = result.error.message;
               }
             });
         });
