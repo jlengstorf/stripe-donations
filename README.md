@@ -4,7 +4,7 @@
   </a>
 </p>
 <h1 align="center">
-  Accept Donations on JAMstack Sites
+  Accept Donations on Jamstack Sites
 </h1>
 <h3 align="center">
   This app was built live on <em>Learn With Jason</em> and it was super fun and I’m sad you weren’t there.
@@ -19,12 +19,13 @@
 
 &nbsp;
 
-Thor 雷神 & Nick DeJesus teach us how to accept donations on our JAMstack sites using Stripe, whether we’re building an app for a non-profit or adding a “buy me a coffee” button to a blog.  
+Thor 雷神 & Nick DeJesus teach us how to accept donations on our Jamstack sites using Stripe, whether we’re building an app for a non-profit or adding a “buy me a coffee” button to a blog.  
 
 &nbsp;
 
 ## More Information
 
+- [Read the tutorial version of this video][tutorial]
 - [Watch this app get built live + see links and additional resources][episode]
 - [Follow _Learn With Jason_ on Twitch][twitch] to watch future episodes live
 - [Add the _Learn With Jason_ schedule to your Google Calendar][cal]
@@ -36,6 +37,7 @@ Thor 雷神 & Nick DeJesus teach us how to accept donations on our JAMstack site
   </a>
 </p>
 
+[tutorial]: https://www.netlify.com/blog/2020/04/28/add-a-donation-button-start-accepting-money-on-jamstack-sites/
 [episode]: https://www.learnwithjason.dev/accept-donations-on-jamstack-sites
 [twitch]: https://jason.af/twitch
 [cal]: https://jason.af/lwj/cal
